@@ -4,18 +4,33 @@ import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
 import axios from 'axios' 
 
 import Login from './components/Login'
+import Register from './components/Register'
+import Header from './components/Header'
+
 
 const BASE_URL = 'https://strangers-things.herokuapp.com/api/2104-UIC-RM-WEB-FT'
 
 
-
+const App = () =>{
+    return(
+        <div>
+            <Login />
+            <Register/>
+        </div>
+    )
+}
 
 
 
 
 
 ReactDOM.render(
-    <Login />,  
+    <Router><App /></Router>,
     document.getElementById("app")
+)
+
+ReactDOM.render(
+    <Router><Header /></Router>,
+    document.getElementById("appHeader")
 )
 
