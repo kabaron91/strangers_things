@@ -13,10 +13,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mikaelafarran/strangers_things/issues"
-  },
-  "homepage": "https://github.com/mikaelafarran/strangers_things#readme",
   "dependencies": {
     "axios": "^0.21.1",
     "react": "^17.0.2",

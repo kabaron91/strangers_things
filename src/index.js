@@ -14,8 +14,8 @@ const BASE_URL = 'https://strangers-things.herokuapp.com/api/2104-UIC-RM-WEB-FT'
 
 
 
-// ReactDOM.render(
-//     <Login />,  
-//     document.getElementById("app")
-// )
+ReactDOM.render(
+    <Login />,  
+    document.getElementById("app")
+)
 

@@ -4,9 +4,9 @@ const Login = function () {
     return (
         <div id="login">
             <form>
-                <label for="loginUsername">Username</label>
+                <label for="loginUsername">Username </label>
                 <input type="text" id="loginUsername" name="loginUsername"/><br/>
-                <label for="loginPassword">Password</label>
+                <label for="loginPassword">Password </label>
                 <input type="password" id="loginPassword" name="loginPassword"/><br/>
                 <input type="Submit"/> 
             </form>
