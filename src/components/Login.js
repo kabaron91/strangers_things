@@ -53,7 +53,7 @@ async function loginUser(user) {
         console.log(token)
         localStorage.setItem('token', token)
     } catch (error) {
-        throw error
+        alert('Incorrect Username or Password. Please try again.')
     }
 }
 

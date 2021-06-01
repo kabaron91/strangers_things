@@ -20,17 +20,11 @@ const App = () =>{
     )
 }
 
-// axios.post(`${BASE_URL}/users/register`, {
-//     body: JSON.stringify({
-//         user: {
-//             username: document.getElementById('registerUserName').value,
-//             password: document.getElementById('registerPassword').value
-//         }
-//     }).then(response => {
-//         console.log(response.data.data)
-//     }).catch(console.error)
 
-// })
+
+
+
+
 
 
 

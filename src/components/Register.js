@@ -33,6 +33,7 @@ const Register = function () {
     return (
         <div id="register">
             <h1>Please Register Below</h1>
+            <h3>Username and Password must be at least 5 characters long.</h3>
             <form>
                 <label for="registerUsername">Username </label>
                 <input required minLength="5" type="text" id="registerUsername" name="registerUsername" onChange={handleUserNameRegister} value={user.user.username}/><br/>
@@ -54,7 +55,7 @@ async function registerUser(user){
         let token = response.data.data.token
         localStorage.setItem('token', token)
     }catch (error){
-        throw error
+        alert('Username already taken. Please try again.')
     }
 }
 
