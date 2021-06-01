@@ -14,8 +14,8 @@ const BASE_URL = 'https://strangers-things.herokuapp.com/api/2104-UIC-RM-WEB-FT'
 const App = () =>{
     return(
         <div>
-            <Login />
-            <Register/>
+            <Route path='/register' component={Register}/>
+            <Route path='/login' component={Login} />
         </div>
     )
 }
