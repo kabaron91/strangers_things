@@ -31,17 +31,15 @@ const Register = function () {
     
 
     return (
-        <div id="login">
+        <div id="register">
             <h1>Please Register Below</h1>
             <form>
                 <label for="registerUsername">Username </label>
-                <input type="text" id="registerUsername" name="registerUsername" onChange={handleUserNameRegister} value={user.user.username}/><br/>
+                <input required minLength="5" type="text" id="registerUsername" name="registerUsername" onChange={handleUserNameRegister} value={user.user.username}/><br/>
                 <label for="registerPassword">Password </label>
-                <input type="password" id="registerPassword" name="registerPassword" value={user.user.password} onChange={handlePasswordRegister}/><br/>
+                <input required minLength="5" type="password" id="registerPassword" name="registerPassword" value={user.user.password} onChange={handlePasswordRegister}/><br/>
                 <input type="Submit" onClick={(event)=>{
                     event.preventDefault()
-                    console.log('were in the click')
-                    console.log(user)
                     registerUser(user)
                 }}/> 
             </form>
@@ -51,8 +49,6 @@ const Register = function () {
 
 
 async function registerUser(user){
-    console.log('in the registerUser function')
-    console.log(`${BASE_URL}/users/register`)
     try{
     let response = await axios.post(`${BASE_URL}/users/register`, user)
         let token = response.data.data.token
