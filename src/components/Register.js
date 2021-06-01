@@ -5,21 +5,27 @@ const BASE_URL = 'https://strangers-things.herokuapp.com/api/2104-UIC-RM-WEB-FT'
 
 const Register = function () {
     const [user, setUser] = useState({
-        username: '',
-        password: '',
+        user:{
+            username: '',
+            password: '',
+        }
     });
     
     const handleUserNameRegister = (event) => {
         setUser((user) => ({
-            ...user,
-            username: event.target.value,
+            user: {
+                username: event.target.value,
+                password: user.user.password
+            }
         }));
     };
     
     const handlePasswordRegister = (event) => {
         setUser((user) => ({
-            ...user,
-            password: event.target.value,
+            user: {
+                username: user.user.username,
+                password: event.target.value,
+            }
         }));
     };
     
@@ -29,9 +35,9 @@ const Register = function () {
             <h1>Please Register Below</h1>
             <form>
                 <label for="registerUsername">Username </label>
-                <input type="text" id="registerUsername" name="registerUsername" onChange={handleUserNameRegister} value={user.username}/><br/>
+                <input type="text" id="registerUsername" name="registerUsername" onChange={handleUserNameRegister} value={user.user.username}/><br/>
                 <label for="registerPassword">Password </label>
-                <input type="password" id="registerPassword" name="registerPassword" value={user.password} onChange={handlePasswordRegister}/><br/>
+                <input type="password" id="registerPassword" name="registerPassword" value={user.user.password} onChange={handlePasswordRegister}/><br/>
                 <input type="Submit" onClick={(event)=>{
                     event.preventDefault()
                     console.log('were in the click')
@@ -47,15 +53,13 @@ const Register = function () {
 async function registerUser(user){
     console.log('in the registerUser function')
     console.log(`${BASE_URL}/users/register`)
-
+    try{
     let response = await axios.post(`${BASE_URL}/users/register`, user)
-        // .then(function (response) {
-        //     console.log(response.data)
-        // })
-        // .catch(function(error){
-        //     console.error(error)
-        // })
-        console.log(response.data)
+        let token = response.data.data.token
+        localStorage.setItem('token', token)
+    }catch (error){
+        throw error
+    }
 }
 
 export default Register 
