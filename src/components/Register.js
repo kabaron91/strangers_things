@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-import {BrowserRouter as Router, Route, Link, Switch, Redirect} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Link, Switch, Redirect, useHistory} from 'react-router-dom'
 
 const BASE_URL = 'https://strangers-things.herokuapp.com/api/2104-UIC-RM-WEB-FT'
 
@@ -29,7 +29,23 @@ const Register = function () {
             }
         }));
     };
-    
+
+    const [registered, setRegistered] = useState(false)
+
+    async function registerUser(user){
+        try {
+            let response = await axios.post(`${BASE_URL}/users/register`, user)
+            let token = response.data.data.token
+            localStorage.setItem('token', token)
+            setRegistered(true)
+        } catch (error){
+            alert('Username already taken. Please try again.')
+        } 
+    }
+
+    if (registered === true) {
+        return <Redirect to='/login' />
+    }
 
     return (
         <div id="register">
@@ -47,20 +63,6 @@ const Register = function () {
             </form>
         </div>
     )
-}
-
-
-async function registerUser(user){
-    let registered = false
-    try{
-        let response = await axios.post(`${BASE_URL}/users/register`, user)
-        let token = response.data.data.token
-        localStorage.setItem('token', token)
-        registered = true
-        registered ? (<Redirect from='/register' to='/login'/>) : null
-    }catch (error){
-        alert('Username already taken. Please try again.')
-    } 
 }
 
 export default Register 
