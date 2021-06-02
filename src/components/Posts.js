@@ -10,6 +10,8 @@ const Posts = ()=> {
 
     let [posts, setPosts] = useState([])
 
+    let [searchTerm, setSearchTerm] = useState('')
+
     async function getPosts() {
         try {
             let { data } = await axios.get(`${BASE_URL}/posts`, {
@@ -18,6 +20,7 @@ const Posts = ()=> {
                 }
             })
             setPosts(data.data.posts)
+            // console.log(data.data.posts)
         } catch (error) {
             console.error(error)
         }
@@ -35,7 +38,19 @@ const Posts = ()=> {
         })
     }
 
-    let postElement = posts.map((post, index, arr) =>{
+    function postMatches(post, text){
+        if (post.title.includes(text) || post.description.includes(text) || post.price.includes(text) || post.author.username.includes(text) ){
+            return true
+            
+        } else {
+            return false
+        }
+    }
+
+    const filteredPosts = posts.filter(post =>postMatches(post, searchTerm))
+    const postsToDisplay = searchTerm.length ? filteredPosts : posts;  
+
+    let postElement = postsToDisplay.map((post, index, arr) =>{
         return (
             <div key={post._id}>
                 <h1>{arr[index].title}</h1>
@@ -53,9 +68,18 @@ const Posts = ()=> {
         )
     })
 
-    
     return (
         <>
+        {<div>
+            <label>Search Posts</label>
+            <input 
+                id='search' 
+                type='text' 
+                placeholder='enter keywords...'
+                value={searchTerm}
+                onChange={(event)=>{setSearchTerm(event.target.value)}}
+            />
+        </div>}
         {token ? <Link to='/newpost'>Create New Post</Link>: null}
         {postElement}
         </>
