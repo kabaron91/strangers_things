@@ -18,8 +18,8 @@ const Header = () => {
                 <h2 id='home'>Home</h2>
                 <Link to='/posts'><h2 id='post'>Posts</h2></Link>
                 {!loggedState ? <> <Link to='/login'><h2 id='login'>Log In</h2></Link>
-                <Link to='/register'><h2 id='signUp'>Sign Up</h2></Link></> : <><h2 id='profile'>Profile</h2>
-                <h2 id='logOut' onClick={() => {logoutUser(), setLoggedState(false)}}>Log Out</h2></>}
+                <Link to='/register'><h2 id='signUp'>Sign Up</h2></Link></> : <><Link to='./profile'><h2 id='profile'>Profile</h2></Link>
+                <Link to='/login'><h2 id='logOut' onClick={() => {logoutUser(), setLoggedState(false)}}>Log Out</h2></Link></>}
             </div>
         </>
     )

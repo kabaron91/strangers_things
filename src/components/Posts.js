@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
+import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
+
 
 const BASE_URL = 'https://strangers-things.herokuapp.com/api/2104-UIC-RM-WEB-FT'
 const token = localStorage.getItem('token')
@@ -25,6 +27,13 @@ const Posts = ()=> {
         getPosts()
     }, [])
     
+    let deletePost = async function({_id}){
+        await axios.delete(`${BASE_URL}/posts/${_id}`, {
+            headers: {
+                Authorization: 'Bearer ' + token,
+            }
+        })
+    }
 
     let postElement = posts.map((post, index, arr) =>{
         return (
@@ -37,10 +46,20 @@ const Posts = ()=> {
                 <p>{arr[index].author.username}</p>
                 <h3>Location</h3>
                 <p>{arr[index].location}</p>
+                <h3>Will Deliver?</h3>
+                {arr[index].willDeliver ? <p>yes</p> : <p>no</p>}
+                {arr[index].isAuthor ? <> <p onClick={()=>{deletePost(post)}}>delete</p> <Link to='/editpost'><p>edit post</p></Link> </>: null}
             </div>
         )
     })
-    return postElement
+
+    
+    return (
+        <>
+        {token ? <Link to='/newpost'>Create New Post</Link>: null}
+        {postElement}
+        </>
+    )
 }
 
 
