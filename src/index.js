@@ -6,6 +6,7 @@ import axios from 'axios'
 import Login from './components/Login'
 import Register from './components/Register'
 import Header from './components/Header'
+import getPosts from './components/Posts'
 
 
 const BASE_URL = 'https://strangers-things.herokuapp.com/api/2104-UIC-RM-WEB-FT'
@@ -16,6 +17,7 @@ const App = () =>{
         <div>
             <Route path='/register' component={Register}/>
             <Route path='/login' component={Login} />
+            <Route path='/posts' component={getPosts} />
         </div>
     )
 }
