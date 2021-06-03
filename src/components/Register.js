@@ -52,9 +52,9 @@ const Register = function () {
             <h1>Please Register Below</h1>
             <h3>Username and Password must be at least 5 characters long.</h3>
             <form>
-                <label for="registerUsername">Username </label>
+                <label htmlFor="registerUsername">Username </label>
                 <input required minLength="5" type="text" id="registerUsername" name="registerUsername" onChange={handleUserNameRegister} value={user.user.username}/><br/>
-                <label for="registerPassword">Password </label>
+                <label htmlFor="registerPassword">Password </label>
                 <input required minLength="5" type="password" id="registerPassword" name="registerPassword" value={user.user.password} onChange={handlePasswordRegister}/><br/>
                 <input type="Submit" onClick={(event)=>{
                     event.preventDefault()

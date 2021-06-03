@@ -96,15 +96,15 @@ const NewPost = function () {
         <div id="addPost">
             <h1>Add New Post</h1>
             <form>
-                <label for="title">Title</label>
+                <label htmlFor="title">Title</label>
                 <input required type="text" id="title" name="title" onChange={handleTitle} value={post.post.title}/><br/>
-                <label for="description">Description</label>
+                <label htmlFor="description">Description</label>
                 <input required type="text" id="description" name="description" onChange={handleDescription} value={post.post.description}/><br/>
-                <label for="price">Price</label>
+                <label htmlFor="price">Price</label>
                 <input required type="text" id="price" name="price" onChange={handlePrice} value={post.post.price}/><br/>
-                <label for="location">Location</label>
+                <label htmlFor="location">Location</label>
                 <input type="text" id="location" name="location" onChange={handleLocation} value={post.post.location}/><br/>
-                <label for="willDeliver">Will deliver?</label>
+                <label htmlFor="willDeliver">Will deliver?</label>
                 <input type="checkbox" id="willDeliver" name="willDeliver" onChange={handleWillDeliver} value={post.post.willDeliver}/><br/>
                 <input type="Submit" onClick={(event)=>{
                     event.preventDefault()

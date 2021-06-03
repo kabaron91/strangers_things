@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import {BrowserRouter as Router, Route, Link, Switch, Redirect, useHistory} from 'react-router-dom'
 
 const BASE_URL = 'https://strangers-things.herokuapp.com/api/2104-UIC-RM-WEB-FT'
 
@@ -29,13 +30,30 @@ const Login = function () {
         }))
     }
 
+    const [loggedIn, setLoggedIn] = useState(false)
+
+    async function loginUser(user) {
+        try {
+            let response = await axios.post(`${BASE_URL}/users/login`, user)
+            let token = response.data.data.token
+            localStorage.setItem('token', token)
+            setLoggedIn(true)
+        } catch (error) {
+            alert('Incorrect Username or Password. Please try again.')
+        }
+    }
+
+    if (loggedIn === true) {
+        return <Redirect to='/profile' />
+    }
+
     return (
         <div id="login">
             <h1>Please Login Below</h1>
             <form>
-                <label for="loginUsername">Username </label>
+                <label htmlFor="loginUsername">Username </label>
                 <input required type="text" id="loginUsername" name="loginUsername" onChange={handleUserNameLogin} value={user.user.username}/><br/>
-                <label for="loginPassword">Password </label>
+                <label htmlFor="loginPassword">Password </label>
                 <input required type="password" id="loginPassword" name="loginPassword" onChange={handlePasswordLogin} value={user.user.password}/><br/>
                 <input type="Submit" onClick={(event) => {
                     event.preventDefault()
@@ -44,17 +62,6 @@ const Login = function () {
             </form>
         </div>
     )
-}
-
-async function loginUser(user) {
-    try {
-        let response = await axios.post(`${BASE_URL}/users/login`, user)
-        let token = response.data.data.token
-        console.log(token)
-        localStorage.setItem('token', token)
-    } catch (error) {
-        alert('Incorrect Username or Password. Please try again.')
-    }
 }
 
 export default Login 

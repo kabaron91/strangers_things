@@ -8,6 +8,7 @@ import Register from './components/Register'
 import Header from './components/Header'
 import Posts from './components/Posts'
 import NewPost from './components/NewPost'
+import Profile from './components/Profile'
 
 
 const BASE_URL = 'https://strangers-things.herokuapp.com/api/2104-UIC-RM-WEB-FT'
@@ -24,6 +25,7 @@ const App = () =>{
             <Route path='/login' component={Login} />
             <Route path='/posts' component={Posts} />
             <Route path='/newpost' component={NewPost} />
+            <Route path='/profile' component={Profile} />
         </main>
         </div>
     )

@@ -4,7 +4,6 @@ import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
 
 
 const BASE_URL = 'https://strangers-things.herokuapp.com/api/2104-UIC-RM-WEB-FT'
-const token = localStorage.getItem('token')
 
 const Posts = ()=> {
 
@@ -63,10 +62,12 @@ const Posts = ()=> {
                 <p>{arr[index].location}</p>
                 <h3>Will Deliver?</h3>
                 {arr[index].willDeliver ? <p>yes</p> : <p>no</p>}
-                {arr[index].isAuthor ? <> <p onClick={()=>{deletePost(post)}}>delete</p> <Link to='/editpost'><p>edit post</p></Link> </>: null}
+                {arr[index].isAuthor ? <> <p onClick={()=>{deletePost(post)}}>delete</p> </>: null}
             </div>
         )
     })
+
+    const token = localStorage.getItem('token')
 
     return (
         <>
