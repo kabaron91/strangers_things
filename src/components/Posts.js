@@ -19,7 +19,6 @@ const Posts = ()=> {
                 }
             })
             setPosts(data.data.posts)
-            // console.log(data.data.posts)
         } catch (error) {
             console.error(error)
         }
@@ -51,7 +50,7 @@ const Posts = ()=> {
 
     let postElement = postsToDisplay.map((post, index, arr) =>{
         return (
-            <div key={post._id}>
+            <div key={post._id} id='post'>
                 <h1>{arr[index].title}</h1>
                 <p>{arr[index].description}</p>
                 <h3>Price</h3>
@@ -62,7 +61,7 @@ const Posts = ()=> {
                 <p>{arr[index].location}</p>
                 <h3>Will Deliver?</h3>
                 {arr[index].willDeliver ? <p>yes</p> : <p>no</p>}
-                {arr[index].isAuthor ? <> <p onClick={()=>{deletePost(post)}}>delete</p> </>: null}
+                {arr[index].isAuthor ? <> <button onClick={()=>{deletePost(post)}}>delete post</button> </>: null}
             </div>
         )
     })
@@ -72,7 +71,7 @@ const Posts = ()=> {
     return (
         <>
         {<div>
-            <label>Search Posts</label>
+            <label>Search Posts </label>
             <input 
                 id='search' 
                 type='text' 

@@ -11,9 +11,6 @@ import NewPost from './components/NewPost'
 import Profile from './components/Profile'
 
 
-const BASE_URL = 'https://strangers-things.herokuapp.com/api/2104-UIC-RM-WEB-FT'
-
-
 const App = () =>{
     return(
         <div>
@@ -21,11 +18,14 @@ const App = () =>{
                 <Header/>
             </header>
         <main>
-            <Route path='/register' component={Register}/>
-            <Route path='/login' component={Login} />
-            <Route path='/posts' component={Posts} />
-            <Route path='/newpost' component={NewPost} />
-            <Route path='/profile' component={Profile} />
+            <Switch>
+                <Route path='/register' component={Register}/>
+                <Route path='/login' component={Login} />
+                <Route path='/posts' component={Posts} />
+                <Route path='/newpost' component={NewPost} />
+                <Route path='/profile' component={Profile} />
+                <Route path='/' component={Posts} />
+            </Switch>
         </main>
         </div>
     )
@@ -44,8 +44,4 @@ ReactDOM.render(
     document.getElementById("app")
 )
 
-// ReactDOM.render(
-//     <Router><Header /></Router>,
-//     document.getElementById("appHeader")
-// )
 

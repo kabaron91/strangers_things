@@ -1,5 +1,6 @@
 * {
     width: 100vw;
+    margin: 0;
 }
 
 header {
@@ -7,22 +8,31 @@ header {
     flex-direction: column; */
     border: 2px solid black;
     width: 100vw;
+    background-color: darkolivegreen;
+    color: white;
+    align-self: center;
+    margin: 15px;
 }
 
 #topHeader {
     display: flex;
     align-items: center;
     text-align: center;
+    padding: 15px;
+    font-size: x-large;
+    font-family: 'Lobster', cursive;
 }
 
 a {
     max-width: 100px;
     text-align: center;
+    text-decoration: none;
 }
 
 a > h2 {
     max-width: 100px;
     text-align: center;
+    color: white;
 }
 
 #bottomHeader {
@@ -33,6 +43,14 @@ a > h2 {
     width: 100vw;
     justify-items:center;
     align-items: center;
+    padding: 10px;
+    font-family: 'Lobster Two', cursive;
+    font-size: larger;
+}
+
+main {
+    margin: 15px;
+    font-family: 'Lora', serif;
 }
 
 #login {
@@ -41,12 +59,31 @@ a > h2 {
 
 form label, form input {
     width: 30%;
+    margin: 2.5px;
 }
 
-#login, #register {
-    display: flex;
-    flex-direction: column;
-    align-content: space-around;
-    align-items: center;
-    width: 95%;
+label {
+    font-size: large;
+}
+
+#search {
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+#post {
+    margin-bottom: 20px;
+}
+
+button {
+    width: 15%;
+}
+
+h3 {
+    font-variant: small-caps;
+    font-weight: bolder;
+}
+
+#welcome {
+    text-align: center;
 }

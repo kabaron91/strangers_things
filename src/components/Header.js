@@ -22,7 +22,7 @@ const Header = () => {
                 <h1>Stranger's Things</h1>
             </div>
             <div id='bottomHeader'>
-                <Link to='/posts'><h2 id='post'>Posts</h2></Link>
+                <Link to='/posts'><h2>Posts</h2></Link>
                 {!loggedState ? <> <Link to='/login'><h2 id='login'>Log In</h2></Link>
                 <Link to='/register'><h2 id='signUp'>Sign Up</h2></Link></> : <><Link to='./profile'><h2 id='profile'>Profile</h2></Link>
                 <Link to='/login'><h2 id='logOut' onClick={() => {logoutUser()}}>Log Out</h2></Link></>}
