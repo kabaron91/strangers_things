@@ -4,7 +4,9 @@ import {BrowserRouter as Router, Route, Link, Switch, Redirect, useHistory} from
 
 const BASE_URL = 'https://strangers-things.herokuapp.com/api/2104-UIC-RM-WEB-FT'
 
-const Login = function () {
+const Login = function (props) {
+    const {loggedIn, setLoggedIn} = props
+
     const [user, setUser] = useState({
         user:{
             username: '',
@@ -30,8 +32,6 @@ const Login = function () {
         }))
     }
 
-    const [loggedIn, setLoggedIn] = useState(false)
-
     async function loginUser(user) {
         try {
             let response = await axios.post(`${BASE_URL}/users/login`, user)
@@ -39,8 +39,9 @@ const Login = function () {
             localStorage.setItem('token', token)
             setLoggedIn(true)
         } catch (error) {
+            console.error(error)
             alert('Incorrect Username or Password. Please try again.')
-        }
+        } 
     }
 
     if (loggedIn === true) {
@@ -50,15 +51,15 @@ const Login = function () {
     return (
         <div id="login">
             <h1>Please Login Below</h1>
-            <form>
+            <form onSubmit={(event) => {
+                    event.preventDefault()
+                    loginUser(user)
+                }}>
                 <label htmlFor="loginUsername">Username </label>
                 <input required type="text" id="loginUsername" name="loginUsername" onChange={handleUserNameLogin} value={user.user.username}/><br/>
                 <label htmlFor="loginPassword">Password </label>
                 <input required type="password" id="loginPassword" name="loginPassword" onChange={handlePasswordLogin} value={user.user.password}/><br/>
-                <input type="Submit" onClick={(event) => {
-                    event.preventDefault()
-                    loginUser(user)
-                }}/>
+                <input type="Submit" />
             </form>
         </div>
     )
